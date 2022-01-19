@@ -44,7 +44,8 @@ spec:
       - name: cloner
         image: alpine/git:latest
         env:
-          GIT_REPOSITORY: {{ .Values.application.repository}}
+        - name: GIT_REPOSITORY
+          value: {{ .Values.application.repository}}
         args:
         - clone
         - $(GIT_REPOSITORY)
@@ -54,7 +55,8 @@ spec:
       - name: checkouter
         image: alpine/git:latest
         env:
-          GIT_REF: {{ .Values.application.version}}
+        - name: GIT_REF
+          value: {{ .Values.application.version}}
         args:
         - checkout 
         - $(GIT_REF)
