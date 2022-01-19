@@ -82,6 +82,14 @@ h2 {
   color: lighten($accent, 20%);
 }
 
+.accent {
+  color: $accent;
+}
+
+.accent-secondary {
+  color: $secondary;
+}
+
 .link {
   color: $secondary;
   text-decoration: none;

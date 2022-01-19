@@ -8,6 +8,7 @@ clean/generated:
 		mkdir docs/css
 		mkdir docs/fonts
 		mkdir docs/img
+		mkdir docs/blog
 
 generate/css:
 		sassc --style compressed src/scss/app.scss docs/css/app-${VERSION}.css
@@ -19,6 +20,7 @@ generate/static:
 		cp src/img/* docs/img/
 		cp src/fonts/* docs/fonts/
 		cp keybase.txt docs/
+		cp robots.txt docs/
 
 cdn/clean:
 		aws s3 rm --recursive "s3://joshgrancell.com/cdn/img"
