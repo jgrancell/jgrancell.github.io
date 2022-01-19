@@ -34,9 +34,6 @@ spec:
         app.kubernetes.io/component: web
         app.kubernetes.io/part-of: frontend
     spec:
-      securityContext:
-        runAsUser: 101
-        runAsGroup: 101
       volumes:
       - name: codebase
         emptyDir: {}
