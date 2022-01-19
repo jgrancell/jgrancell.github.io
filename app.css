@@ -1,0 +1,92 @@
+html {
+  font-size: 16px;
+}
+
+body {
+  max-width: 72rem;
+  height: 100%;
+  background-color: #1d1f21;
+  color: #c9cacc;
+  font-display: swap;
+  font-weight: 400;
+  font-size: 16px;
+  font-family: "Oxygen Mono", monospace;
+  line-height: 1.725;
+  text-rendering: geometricPrecision;
+  -webkit-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  padding-right: 2rem;
+  padding-left: 2rem;
+  margin: 0 auto;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  overflow-wrap: break-word;
+  padding-top: 1rem;
+  padding-bottom: 4rem;
+  box-sizing: border-box;
+}
+
+h1 {
+  display: block;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  color: #2b8abc;
+  letter-spacing: 0.01em;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 1.5em;
+}
+
+.section a {
+  color: #bc2b8abc;
+  text-decoration: none;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.nav-title, .nav-title a {
+  color: #666;
+  text-decoration: none;
+  font-weight: inherit;
+  text-transform: none;
+  margin-top: 0rem;
+  margin-bottom: 0rem;
+}
+
+.title {
+  font-size: 2em;
+}
+
+.subtitle {
+  font-size: 1.2em;
+  color: #666;
+  margin-top: -4px;
+  margin-bottom: -4px;
+}
+
+.section p {
+  hyphens: auto;
+  text-align: justify;
+  box-sizing: border-box;
+}
+
+.badge {
+  margin-right: 4px;
+}
+
+.footer {
+  border-top: 1px solid #666;
+  font-size: 12px;
+}
+
+.footer p {
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+}
