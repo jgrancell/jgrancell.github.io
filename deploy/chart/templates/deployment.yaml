@@ -47,8 +47,9 @@ spec:
         - name: GIT_REPOSITORY
           value: {{ .Values.application.repository}}
         args:
-        - clone
-        - $(GIT_REPOSITORY)
+        - "clone"
+        - "$(GIT_REPOSITORY)"
+        - "."
         volumeMounts:
         - mountPath: "/git"
           name: codebase
@@ -58,8 +59,8 @@ spec:
         - name: GIT_REF
           value: {{ .Values.application.version}}
         args:
-        - checkout 
-        - $(GIT_REF)
+        - "checkout" 
+        - "$(GIT_REF)"
         volumeMounts:
         - mountPath: "/git"
           name: codebase
@@ -69,7 +70,7 @@ spec:
         imagePullPolicy: IfNotPresent
         volumeMounts:
         - mountPath: "/usr/share/nginx/html"
-          subPath: artifacts
+          subPath: deploy/src
           name: codebase
         resources:
           requests:
