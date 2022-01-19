@@ -43,6 +43,21 @@ spec:
       initContainers:
       - name: cloner
         image: alpine/git:latest
+        env:
+          GIT_REPOSITORY: {{ .Values.application.repository}}
+        args:
+        - clone
+        - $(GIT_REPOSITORY)
+        volumeMounts:
+        - mountPath: "/git"
+          name: codebase
+      - name: checkouter
+        image: alpine/git:latest
+        env:
+          GIT_REF: {{ .Values.application.repository}}
+        args:
+        - checkout 
+        - $(GIT_REF)
         volumeMounts:
         - mountPath: "/git"
           name: codebase
