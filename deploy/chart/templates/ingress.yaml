@@ -26,6 +26,6 @@ spec:
   {{- end }}
   defaultBackend:
     service:
-      name: {{ .Values.application.hostname }}
+      name: {{ .Values.application.hostname | replace "." "-" }}
       port:
         number: 80
