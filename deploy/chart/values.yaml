@@ -6,6 +6,7 @@ application:
   version: main
 
 nginx:
+  enableTls: true
   version: 1.21.5-alpine
   additionalHostnames: 
   - www.joshgrancell.com

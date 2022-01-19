@@ -11,26 +11,21 @@ metadata:
     app.kubernetes.io/version: {{ .Values.application.version }}
     app.kubernetes.io/component: ingress
     app.kubernetes.io/part-of: frontend
+  {{- if .Values.nginx.enableTls }}
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
+  {{- end }}
 spec:
+  {{- if .Values.nginx.enableTls }}
   tls:
-
   {{- range $hostnames }}
   - hosts:
     - {{ . }}
     secretName: {{ . }}
   {{- end }}
-  rules:
-  {{- range $hostnames }}
-    - host: {{ . }}
-      http:
-        paths:
-        - path: /
-          pathType: Prefix
-          backend:
-            service:
-              name: {{ .Values.application.hostname }}
-              port:
-                number: 80
   {{- end }}
+  defaultBackend:
+    service:
+      name: {{ .Values.application.hostname }}
+      port:
+        number: 80

@@ -54,7 +54,7 @@ spec:
       - name: checkouter
         image: alpine/git:latest
         env:
-          GIT_REF: {{ .Values.application.repository}}
+          GIT_REF: {{ .Values.application.version}}
         args:
         - checkout 
         - $(GIT_REF)
