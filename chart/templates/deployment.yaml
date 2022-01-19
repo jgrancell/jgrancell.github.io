@@ -46,7 +46,7 @@ spec:
               - key: app.kubernetes.io/instance
                 operator: In
                 values:
-                - {{ .Release.name }}
+                - {{ .Release.Name }}
               - key: app.kubernetes.io/version
                 operator: In
                 values:
