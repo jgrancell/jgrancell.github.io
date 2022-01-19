@@ -2,7 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.hostname }}
+  name: {{ .Values.application.hostname }}
   namespace: {{ .Values.namespace }}
   labels:
     app.kubernetes.io/name: {{ .Values.application.hostname }}
