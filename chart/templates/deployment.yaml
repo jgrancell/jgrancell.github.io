@@ -67,7 +67,7 @@ spec:
         imagePullPolicy: IfNotPresent
         volumeMounts:
         - mountPath: "/usr/share/nginx/html"
-          subPath: deploy/src
+          subPath: docs
           name: codebase
         resources:
           requests:

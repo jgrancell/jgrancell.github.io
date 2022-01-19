@@ -128,6 +128,17 @@ h2 {
   margin-bottom: -4px;
 }
 
+.blog h2 {
+  margin-bottom: 0.4em;
+}
+
+.blog .subtitle {
+  font-size: 0.8rem;
+  color: lighten($subdued, 30%);
+  margin-top: 0.1em;
+  margin-bottom: 0.5em;
+}
+
 .section ~ .section {
   border-top: 1px solid $subdued;
   margin-top: 1rem;

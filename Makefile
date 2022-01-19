@@ -1,17 +1,35 @@
-## Copyright 2020-2022 Josh Grancell. All rights reserved.
-## Use of this source code is governed by an MIT License
-## that can be found in the LICENSE file.
-TEST?=$$(go list ./... | grep -v vendor)
-WORKDIR=$$(pwd)
-BINARY=$$(pwd | xargs basename)
-VERSION=$$(grep version main.go | head -n1 | cut -d\" -f2)
-GOBIN=${GOPATH}/bin
+VERSION=$$(cat version.txt)
 
 default: build
 
-build:
-	sassc scss/app.scss css/app.css --style compressed
-	cp *.html deploy/src/
-	cp keybase.txt deploy/src/
-	cp css/*.css deploy/src/css/
-	cp img/* deploy/src/img/
+clean/generated:
+		rm -rf docs
+		mkdir docs
+		mkdir docs/css
+		mkdir docs/fonts
+		mkdir docs/img
+
+generate/css:
+		sassc --style compressed src/scss/app.scss docs/css/app-${VERSION}.css
+
+generate/html:
+		bash build-html.sh ${VERSION}
+
+generate/static:
+		cp src/img/* docs/img/
+		cp src/fonts/* docs/fonts/
+		cp keybase.txt docs/
+
+cdn/clean:
+		aws s3 rm --recursive "s3://joshgrancell.com/cdn/img"
+		aws s3 rm --recursive "s3://joshgrancell.com/cdn/css"
+		aws s3 rm --recursive "s3://joshgrancell.com/cdn/fonts"
+
+cdn/upload:
+		aws s3 sync "docs/img/" "s3://joshgrancell.com/cdn/img/"
+		aws s3 sync "docs/css/" "s3://joshgrancell.com/cdn/css/"
+		aws s3 sync "docs/fonts/" "s3://joshgrancell.com/cdn/fonts/"
+
+build: clean/generated generate/css generate/html generate/static
+
+publish: build cdn/upload
