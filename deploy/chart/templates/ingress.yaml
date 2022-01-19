@@ -1,0 +1,36 @@
+{{- $hostnames := append .Values.nginx.additionalHostnames .Values.application.hostname }}
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ .Values.application.hostname }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    app.kubernetes.io/name: {{ .Values.application.hostname }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/version: {{ .Values.application.version }}
+    app.kubernetes.io/component: ingress
+    app.kubernetes.io/part-of: frontend
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+spec:
+  tls:
+
+  {{- range $hostnames }}
+  - hosts:
+    - {{ . }}
+    secretName: {{ . }}
+  {{- end }}
+  rules:
+  {{- range $hostnames }}
+    - host: {{ . }}
+      http:
+        paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: {{ .Values.application.hostname }}
+              port:
+                number: 80
+  {{- end }}

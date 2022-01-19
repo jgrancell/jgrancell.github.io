@@ -1,0 +1,10 @@
+namespace: app-gc-websites
+
+application:
+  hostname: joshgrancell.com
+  version: main
+
+nginx:
+  version: 1.21.5-alpine
+  additionalHostnames: 
+  - www.joshgrancell.com

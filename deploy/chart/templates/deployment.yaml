@@ -1,0 +1,67 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.hostname }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    app.kubernetes.io/name: {{ .Values.application.hostname }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/version: {{ .Values.application.version }}
+    app.kubernetes.io/component: web
+    app.kubernetes.io/part-of: frontend
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ .Values.application.hostname }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+      app.kubernetes.io/version: {{ .Values.application.version }}
+      app.kubernetes.io/component: web
+      app.kubernetes.io/part-of: frontend
+  replicas: {{ .Values.application.replicas }}
+  revisionHistoryLimit: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 50%
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ .Values.application.hostname }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+        app.kubernetes.io/version: {{ .Values.application.version }}
+        app.kubernetes.io/component: web
+        app.kubernetes.io/part-of: frontend
+    spec:
+      securityContext:
+        runAsUser: 101
+        runAsGroup: 101
+      volumes:
+      - name: codebase
+        emptyDir: {}
+      initContainers:
+      - name: cloner
+        image: alpine/git:latest
+        volumeMounts:
+        - mountPath: "/git"
+          name: codebase
+      containers:
+      - name: nginx
+        image: {{ .Values.nginx.version }}
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+        - mountPath: "/usr/share/nginx/html"
+          subPath: artifacts
+          name: codebase
+        resources:
+          requests:
+            memory: "56Mi"
+            cpu: "100m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
+        securityContext:
+          allowPrivilegeEscalation: false
