@@ -1,6 +1,7 @@
 namespace: app-gc-websites
 
 application:
+  replicas: 2
   hostname: joshgrancell.com
   repository: https://github.com/jgrancell/jgrancell.github.io.git
   version: main

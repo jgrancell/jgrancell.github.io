@@ -34,6 +34,32 @@ spec:
         app.kubernetes.io/component: web
         app.kubernetes.io/part-of: frontend
     spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app.kubernetes.io/name
+                operator: In
+                values:
+                - {{ .Values.application.hostname }}
+              - key: app.kubernetes.io/instance
+                operator: In
+                values:
+                - {{ .Release.name }}
+              - key: app.kubernetes.io/version
+                operator: In
+                values:
+                - {{ .Values.application.version }}
+              - key: app.kubernetes.io/component
+                operator: In
+                values:
+                - web
+              - key: app.kubernetes.io/part-of
+                operator: In
+                values:
+                - frontend
+            topologyKey: "kubernetes.io/hostname"
       volumes:
       - name: codebase
         emptyDir: {}
