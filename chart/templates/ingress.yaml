@@ -18,7 +18,6 @@ metadata:
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
   {{- end }}
 spec:
-  ingressClassName: nginx
   {{- if .Values.nginx.enableTls }}
   tls:
   {{- range $hostnames }}
