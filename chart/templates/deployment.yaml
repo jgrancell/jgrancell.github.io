@@ -2,7 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.application.hostname | replace "." "-"}}
+  name: {{ .Values.application.hostname | replace "." "-" }}
   namespace: {{ .Values.namespace }}
   labels:
     app.kubernetes.io/name: {{ .Values.application.hostname }}
@@ -63,6 +63,9 @@ spec:
       volumes:
       - name: codebase
         emptyDir: {}
+      - name: nginx-config
+        configMap:
+          name: {{ .Values.application.hostname | replace "." "-" }}
       initContainers:
       - name: cloner
         image: alpine/git:latest
@@ -92,9 +95,11 @@ spec:
         image: "nginx:{{ .Values.nginx.version }}"
         imagePullPolicy: IfNotPresent
         volumeMounts:
-        - mountPath: "/usr/share/nginx/html"
+        - name: codebase
           subPath: docs
-          name: codebase
+          mountPath: "/usr/share/nginx/html"
+        - name: nginx-config
+          mountPath: "/etc/nginx/conf.d"
         resources:
           requests:
             memory: "56Mi"
