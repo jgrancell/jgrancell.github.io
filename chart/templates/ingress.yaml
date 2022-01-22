@@ -20,11 +20,11 @@ metadata:
 spec:
   {{- if .Values.nginx.enableTls }}
   tls:
-  {{- range $hostnames }}
   - hosts:
+  {{- range $hostnames }}
     - {{ . }}
-    secretName: {{ . }}
   {{- end }}
+    secretName: {{ .Values.application.hostname | replace "." "-" }}-tls
   {{- end }}
   defaultBackend:
     service:
