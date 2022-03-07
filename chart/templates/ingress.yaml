@@ -27,7 +27,8 @@ spec:
     secretName: {{ .Values.application.hostname | replace "." "-" }}-tls
   {{- end }}
   rules:
-  - host: {{ .Values.application.hostname }}
+  {{-range $hostnames }}
+  - host: {{ $hostname }}
     http:
       paths:
       - path: /
@@ -37,3 +38,4 @@ spec:
             name: {{ .Values.application.hostname | replace "." "-" }}
             port:
               number: 8080
+  {{- end }}
