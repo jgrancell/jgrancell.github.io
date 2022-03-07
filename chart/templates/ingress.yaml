@@ -28,7 +28,7 @@ spec:
   {{- end }}
   rules:
   {{- range $hostnames }}
-  - host: {{ $hostname }}
+  - host: {{ . }}
     http:
       paths:
       - path: /
