@@ -27,7 +27,7 @@ spec:
     secretName: {{ .Values.application.hostname | replace "." "-" }}-tls
   {{- end }}
   rules:
-  {{-range $hostnames }}
+  {{- range $hostnames }}
   - host: {{ $hostname }}
     http:
       paths:
