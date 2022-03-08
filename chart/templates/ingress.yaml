@@ -35,5 +35,5 @@ spec:
           service:
             name: {{ $root.Values.application.hostname | replace "." "-" }}
             port:
-              number: 8080
+              number: 80
   {{- end }}
