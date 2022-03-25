@@ -50,17 +50,37 @@
     my projects.
   </p>
   <h2>Why Templates?</h2>
-  <p>...coming soon</p>
+  <p>
+    I really don't like repeating things. Whether it's code, guides, documentation, or anything -- if
+    it can be automated it ~should~ be automated. Building reusable templates allows me to follow one
+    of the core tennants of software architecture: Don't Repeat Yourself. DRY coding means you are
+    always thinking about how you can make your code modular and composable. The vast majority of the
+    Golang metafiles I use are shared between both libraries and applications. Rather than redefining
+    these files for every single library and application, I can define them once and reuse them endlessly.
+  </p>
   <h2>Inspiration</h2>
-  <p>...coming soon</p>
+  <p>
+    One of my first forays into DevOps was through Puppet Configuration Management. Puppet has a supporting
+    tool called Modulesync which lets you sync some of the Puppet module scaffolding between your various
+    modules. Metasync is my own take on Modulesync, not limited to Puppet modules but useful for any codebase.
+  </p>
   <h2>How I'm Using It</h2>
-  <p>...coming soon</p>
+  <p>
+    I currently have a number of templates set up that I am using with Metasync. These include templates
+    for PHP code, for Golang code, and for GitOps/Kubernetes code. With these templates I can update my CI/CD
+    tests, dependencies, and supporting files in a single place and let my CI pipelines fetch metafile updates
+    on a regular schedule.
+  </p>
   <h2>Where Metasync Goes From Here</h2>
-  <p>...coming soon</p>
+  <p>
+    Ideally, Metasync will one day support Golang-style templating within actual template files. In this
+    way Metasync templates will truly ~be~ templates -- the end user will be able to dynamically modify
+    the content without having to repeat themselves endlessly in code. Sane defaults, sparing overrides.
+  </p>
 </div>
     <div class="footer">
       <p>
-        Last update: March 07, 2022
+        Last update: March 24, 2022
       </p>
       <p>
         This website does not track any personal information.. All content on this website is © 2015-2022 Josh Grancell. All rights reserved. I hate Javascript.
