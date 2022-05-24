@@ -102,11 +102,11 @@ spec:
           mountPath: "/etc/nginx/conf.d"
         resources:
           requests:
-            memory: "56Mi"
-            cpu: "100m"
+            cpu: 5m
+            memory: 16M
           limits:
-            memory: "128Mi"
-            cpu: "500m"
+            cpu: 10m
+            memory: 32M
         ports:
         - containerPort: 80
         securityContext:
