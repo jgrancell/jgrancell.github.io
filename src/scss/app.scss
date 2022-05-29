@@ -119,6 +119,23 @@ h2 {
   margin-bottom: 0rem;
 }
 
+.nav-group-left, .nav-group-right {
+  float: left;
+
+  a {
+    border-right: 1px solid $subdued;
+    padding-right: 15px;
+
+    &:last-child {
+      border-right: none;
+    }
+  }
+}
+
+.nav-group-right {
+  float: right
+}
+
 .title {
   font-size: 2em;
 }
