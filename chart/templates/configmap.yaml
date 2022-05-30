@@ -5,11 +5,6 @@ metadata:
   name: {{ .Values.application.hostname | replace "." "-" }}
   namespace: {{ .Release.Namespace }}
 data:
-  gzip.conf: |
-    http {
-      gzip on;
-      gzip_disable "msie6";
-    }
   application.conf: |
     server {
       listen 80 default_server;
@@ -35,4 +30,6 @@ data:
 
       error_log  /dev/stderr;
       access_log /dev/stdout;
+
+      gzip on;
     }
