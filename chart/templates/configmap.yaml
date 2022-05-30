@@ -12,7 +12,7 @@ data:
 
       add_header X-Frame-Options "SAMEORIGIN";
       add_header X-Content-Type-Options "nosniff";
-      add_header Content-Security-Policy "default-src 'none'; font-src https://joshgrancell.cdn.grancellconsulting.net; img-src 'self' https://joshgrancell.cdn.grancellconsulting.net https://img.shields.io; object-src 'none'; script-src 'none'; style-src 'self' https://joshgrancell.cdn.grancellconsulting.net;";
+      add_header Content-Security-Policy "default-src 'none'; font-src 'self'; img-src 'self' https://joshgrancell.cdn.grancellconsulting.net https://img.shields.io; object-src 'none'; script-src 'none'; style-src 'self' https://joshgrancell.cdn.grancellconsulting.net;";
 
       add_header Strict-Transport-Security "max-age=31536000; includeSubDomains; preload";
 
