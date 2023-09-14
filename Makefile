@@ -9,6 +9,7 @@ clean/generated:
 		mkdir docs/fonts
 		mkdir docs/img
 		mkdir docs/blog
+		echo "joshgrancell.com" > docs/CNAME
 
 generate/css:
 		sassc --style compressed src/scss/app.scss docs/css/app-${VERSION}.css
